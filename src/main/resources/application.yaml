@@ -24,11 +24,9 @@ spring:
           enabled: true
       aop-patterns: com.xxml.admin.*  #监控SpringBean
 
-
   jdbc:
     template:
       query-timeout: 3
-
 
   redis:
     host: 0.0.0.0
@@ -43,3 +41,29 @@ spring:
     jedis:
       pool:
         max-active: 10
+
+#  boot:
+#    admin:
+#      client:
+#        url: http://localhost:8888
+#        instance:
+#          prefer-ip: false
+
+  application:
+    name: boot-admin
+
+
+management:
+  endpoints:
+    enabled-by-default: true #暴露所有端点信息
+    web:
+      exposure:
+        include: '*'  #以web方式暴露
+  endpoint:
+    health:
+      show-details: always
+logging:
+  level:
+    root: info
+    com.xxml: debug
+

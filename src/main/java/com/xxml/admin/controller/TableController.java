@@ -18,6 +18,7 @@ import java.util.List;
 @Controller
 public class TableController {
 
+
     @Autowired
     UserService userService;
 
@@ -25,6 +26,18 @@ public class TableController {
     public String basic_table(){
 
         return "table/basic_table";
+    }
+    @GetMapping("/user/update/{id}")
+    public String updateUser(@PathVariable("id") Long id,
+                             @RequestParam(value = "pn", defaultValue = "1")Integer pn,
+                             RedirectAttributes ra){
+        User user = userService.getById(id);
+        user.setAge(88);
+//        userService.saveOrUpdate(user);
+//        userService.update();
+        userService.save(user);
+        ra.addAttribute("pn", pn);
+        return "redirect:/dynamic_table";
     }
 
     @GetMapping("/user/delete/{id}")
@@ -54,7 +67,7 @@ public class TableController {
         //从数据库中查出user表中的用户进行展示
 
         //构造分页参数
-        Page<User> page = new Page<>(pn, 2);
+        Page<User> page = new Page<>(pn, 10);
         //调用page进行分页
         Page<User> userPage = userService.page(page, null);
 
@@ -75,7 +88,18 @@ public class TableController {
     }
 
     @GetMapping("editable_table")
-    public String editable_table(){
+    public String editable_table(Model model){
+
+        List<User> list = userService.list();
+        model.addAttribute("users", list);
+
+        User user = new User();
+        user.setName("haha");
+        user.setAge(89);
+        user.setEmail("121@12.com");
+
+        userService.save(user);
+//        userService.save();
 
         return "table/editable_table";
     }

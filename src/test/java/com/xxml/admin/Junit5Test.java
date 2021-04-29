@@ -5,9 +5,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.xml.ws.spi.WebServiceFeatureAnnotation;
 import java.time.Duration;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assumptions.*;
 
 //@SpringBootTest
 @DisplayName("Junit5 功能测试类")
@@ -75,13 +77,13 @@ public class Junit5Test {
     }
 
     @Test
-    @DisplayName("array assertion")
+    @DisplayName("数组断言 array assertion")
     public void array() {
         assertArrayEquals(new int[]{1, 2}, new int[] {1, 12}, "err");
     }
 
     @Test
-    @DisplayName("assert all")
+    @DisplayName("组合断言 assert all")
     public void all() {
         assertAll("Math",
                 () -> assertEquals(2, 1 + 1),
@@ -107,9 +109,29 @@ public class Junit5Test {
     }
 
     @Test
-    @DisplayName("fail")
+    @DisplayName("快速失败fail")
     public void shouldFail() {
         fail("This should fail");
     }
 
+    @DisplayName("前置条件")
+    public class AssumptionsTest {
+        private final String environment = "DEV";
+
+        @Test
+        @DisplayName("simple")
+        public void simpleAssume() {
+            assumeTrue(Objects.equals(this.environment, "DEV"));
+            assumeFalse(() -> Objects.equals(this.environment, "PROD"));
+        }
+
+        @Test
+        @DisplayName("assume then do")
+        public void assumeThenDo() {
+            assumingThat(
+                    Objects.equals(this.environment, "DEV"),
+                    () -> System.out.println("In DEV")
+            );
+        }
+    }
 }
