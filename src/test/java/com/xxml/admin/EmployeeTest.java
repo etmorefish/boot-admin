@@ -20,22 +20,22 @@ public class EmployeeTest {
         System.out.println(employeeMapper.selectById(1));
     }
 
-    @Test
-    void add(){
-        Employee hehe = new Employee(null, "hehe", "hehe@csa.com", 1, 18);
-        employeeMapper.insert(hehe);
-
-        // 插入后可以立即得到主键
-        System.out.println(hehe);
-    }
-    @Test
-    void update(){
-        Employee hehe = new Employee(5, "lining", "hehe@linig.com", 1, 18);
-        employeeMapper.updateById(hehe);
-
-        // 插入后可以立即得到主键
-        System.out.println(hehe);
-    }
+//    @Test
+//    void add(){
+//        Employee hehe = new Employee(null, "hehe", "hehe@csa.com", 1, 18);
+//        employeeMapper.insert(hehe);
+//
+//        // 插入后可以立即得到主键
+//        System.out.println(hehe);
+//    }
+//    @Test
+//    void update(){
+//        Employee hehe = new Employee(5, "lining", "hehe@linig.com", 1, 18);
+//        employeeMapper.updateById(hehe);
+//
+//        // 插入后可以立即得到主键
+//        System.out.println(hehe);
+//    }
 
     @Test
     void delete(){
@@ -46,7 +46,6 @@ public class EmployeeTest {
     void list(){
         HashMap<String, Object> columnMap = new HashMap<>();
         columnMap.put("gender", 0);
-
 //        List<Employee> employees = employeeMapper.selectByMap(null);
         List<Employee> employees = employeeMapper.selectByMap(columnMap);
         System.out.println(employees);

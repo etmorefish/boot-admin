@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.xxml.admin.mapper.EmployeeMapper">
+    <select id="getByGender" resultType="com.xxml.admin.bean.Employee">
+        SELECT * FROM employee WHERE gender=#{gender}
+    </select>
+</mapper>

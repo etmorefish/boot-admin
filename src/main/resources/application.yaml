@@ -3,6 +3,9 @@ spring:
     url: jdbc:mysql://0.0.0.0:3306/test
     username: root
     password: 123456
+#    url: mpw:drUrYiMDYdOp5e2sIDmIg7yjDt+u0O/vGkA7ri6pNY0=
+#    username: mpw:A8/w4XVIJou2uNw3x1LXwg==
+#    password: mpw:UxYizXwIfgpwgg6iFLYRkA==
     driver-class-name: com.mysql.cj.jdbc.Driver
     druid:
       stat-view-servlet:      # 配置监控页功能
@@ -66,4 +69,16 @@ logging:
   level:
     root: info
     com.xxml: debug
+#mybatis-plus:
+#  global-config:
+#    db-config:
+#      id-type: auto
+mybatis-plus:
+  global-config:
+    db-config:
+      logic-delete-field: enabled
+      logic-delete-value: 0
+      logic-not-delete-value: 1
+      id-type: auto
 
+mpw.key: 5a3fa229f6ca46c6

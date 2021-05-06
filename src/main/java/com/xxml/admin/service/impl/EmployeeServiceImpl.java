@@ -12,6 +12,6 @@ import org.springframework.stereotype.Service;
  *     2个泛型 1、EmployeeMapper Mapper 接口
  *            2、Employee对应 Bean
  */
-@Service
+@Service   // 注入到ioc容器
 public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee> implements EmployeeService {
 }
